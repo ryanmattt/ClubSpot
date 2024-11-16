@@ -8,18 +8,15 @@ import Group from "./pages/Group";
 // Import Bootstrap CSS in your project
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import styled from 'styled-components';
-
-
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="groups" element={<Group />} />
-        <Route path="feed" element={<Feed />} />
+          <Route index element={<Home />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="groups" element={<Group />} />
+          <Route path="feed" element={<Feed />} />
         </Route>
       </Routes>
     </BrowserRouter>
