@@ -1,0 +1,9 @@
+{
+    "display_name": "string",
+    "username": "string",
+    "password": "string",
+    "Groups": ["string"],
+    "Board_Groups": ["string"],
+    "Site_admin": false
+  }
+  
