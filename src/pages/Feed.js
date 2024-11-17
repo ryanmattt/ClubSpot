@@ -8,10 +8,11 @@ const Feed = () => {
       
       <div className="feed">
         {/* Your feed content here */}
-        as 
+        
       </div>
     </div>
   );
 };
 
 export default Feed;
+  

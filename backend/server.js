@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { faker } = require('@faker-js/faker');
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -156,7 +157,7 @@ app.post("/api/auth/verify", (req, res) => {
   console.log("Token from cookie:", token);
 
   if (!token) {
-    return;
+    return res.status(401).send({ message: "Unauthorized: No token provided." });
   }
 
   try {
@@ -336,3 +337,4 @@ app.get("/profile", (req, res) => {
   console.log("Profile route hit");
   res.send("Profile page");
 });
+

@@ -8,8 +8,6 @@ axios.defaults.withCredentials = true;
 const Profile = () => {
   const [groups, setGroups] = useState([]);
   const [allGroups, setAllGroups] = useState([]);
-  const [showJoinDialog, setShowJoinDialog] = useState(true);
-  const [newGroupDialog, setNewGroupDialog] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true); // Default to false
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

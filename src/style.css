@@ -3,7 +3,72 @@
   background-color: none !important;
   padding:0px !important;
   margin: 0px !important;
+  font-family:Arial, Helvetica, sans-serif;
 }
+/* General page setup */
+
+/* Title */
+.title {
+  font-size: 2.5rem;
+  color: #2a3d66; /* Darker blue for the title */
+  margin-bottom: 20px;
+}
+
+/* Description */
+.description {
+  font-size: 1.1rem;
+  color: #5a6d86; /* Slightly grayish blue */
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Call-to-action text */
+.cta-text {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* Link styling */
+.App-link {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Hover effect */
+}
+
+.App-link:active {
+  background-color: #388e3c;
+  transform: translateY(1px); /* Press effect */
+}
+
+/* For responsive design */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+  .description {
+    font-size: 1rem;
+  }
+  .cta-text {
+    font-size: 0.9rem;
+  }
+  .App-link {
+    font-size: 1rem;
+  }
+}
+
 
 .navbar {
   display: flex;
@@ -12,7 +77,6 @@
   padding: 10px 20px;             /* Add padding to the navbar */
   background-color: #e6f2ff;        /* Set background color for the navbar */
   border-radius: 5px;
-  
 }
 .maincontainer{
   justify-content: center;
@@ -21,6 +85,7 @@
 .feed {
   display: flex;
   flex-direction: column; /* Stack the feed items vertically */
+  text-align: left;
   gap: 15px; /* Adds space between each feed item */
   padding: 20px; /* Adds padding around the feed */
   width: 100%; /* Ensures the feed takes up the full available width */
@@ -48,7 +113,26 @@
   width: 90%;
   margin: 20px auto;
   padding: 10px;
+  text-align: left;
 }
+
+.joinButton{
+
+  color: white;
+  text-align: center;
+  padding: 1em 2em;
+  margin: 5px;
+  border-radius: 5%;
+  background-color: rgb(60, 144, 150); /* 0.5 is 50% transparency */
+  border: None;
+  cursor: pointer;
+
+}
+
+.group h1{
+  text-align: center;
+}
+
 .groupForm{
   padding:2em;
 }
@@ -72,7 +156,7 @@
   border: 1px solid rgb(208, 208, 208);
   border-radius: 10px;
   padding: 20px;
-  margin: 10px;
+  margin: 20px;
   max-width: 100%;
   min-height: 300px;
   display: inline-block;
@@ -116,7 +200,7 @@ h2{
   flex-direction: column;
   align-items: center;
   /* justify-content: center; Horizontally center */
-  padding: 10px; /* Optional: Add padding for spacing */
+  padding: 20px; /* Optional: Add padding for spacing */
   height: 100vh; /* Ensure the container takes up the full viewport height */
 }
 
@@ -128,7 +212,6 @@ html {
     rgb(30, 202, 151),
     rgb(46, 104, 192)
   );
-  overflow: hidden;
   height: 100%;
 }
 
