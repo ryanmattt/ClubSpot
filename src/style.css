@@ -12,30 +12,85 @@
   padding: 10px 20px;             /* Add padding to the navbar */
   background-color: #e6f2ff;        /* Set background color for the navbar */
   border-radius: 5px;
+  
+}
+.maincontainer{
+  justify-content: center;
+}
+/* Feed div css */
+.feed {
+  display: flex;
+  flex-direction: column; /* Stack the feed items vertically */
+  gap: 15px; /* Adds space between each feed item */
+  padding: 20px; /* Adds padding around the feed */
+  width: 100%; /* Ensures the feed takes up the full available width */
+  max-width: 800px; /* Optional: limit the maximum width of the feed */
+  margin: 20px auto; /* Centers the feed horizontally with margin on top and bottom */
+  background-color: #f9f9f9; /* Light background color for the feed */
+  border-radius: 10px; /* Optional: Rounded corners for the feed */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
 }
 
+
+
+.container2{
+  padding: 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  background-color: white;
+}
+
+/* group div css */
+.group{
+  background-color: white;
+  border-radius: 1%;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+}
+.groupForm{
+  padding:2em;
+}
+.groupText {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  width:fill;
+  height:5vh;
+}
 .error-text {
   color: red;
   margin-top: 10px;
 }
 
+.regForm{
+  max-width: 500px;
+}
+
 .card{
-  border: 1px solid black;
+  border: 1px solid rgb(208, 208, 208);
   border-radius: 10px;
-  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
   padding: 20px;
   margin: 10px;
   max-width: 100%;
   min-height: 300px;
   display: inline-block;
-  background-color: #F5F5F5;
+  background-color: #ffffff;
 
+}
+
+.container2 ul{
+  text-align: left;
 }
 
 .regLink{
   font-family: Arial;
   color: rgba(81, 127, 244, 0.689);
   text-decoration: underline;
+  padding: 5px;
+  cursor: pointer;
+  margin: 10px;
 }
 
 .arialstyle {
@@ -56,10 +111,13 @@ h2{
 }
 
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* justify-content: center; Horizontally center */
+  padding: 10px; /* Optional: Add padding for spacing */
+  height: 100vh; /* Ensure the container takes up the full viewport height */
 }
 
 
@@ -82,13 +140,13 @@ html {
   border-radius: 5%;
   background-color: rgba(61, 106, 255, 0.5); /* 0.5 is 50% transparency */
   border: None;
+  cursor: pointer;
 }
 
 .row{
   display: flex;
   flex-direction: row;
  justify-content: center;
- cursor: pointer;
 }
 
 .regButton{
@@ -98,22 +156,36 @@ html {
   margin: 5px;
   border-radius: 5%;
   background-color: rgb(56, 174, 117);
-  border: None;
+  border: 2px;
+  cursor: pointer;
 }
 
+.signout{
+  border:none;
+  background-color: rgb(122, 122, 122);
+  /* border-radius: 10%; */
+  width : 10vw;
+  height: 5vh;
+}
+.signout:hover {
+  background-color: red;
+}
 .topButton {
-  background-color: rgba(81, 127, 244, 0.689);
-  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  color: black;
   text-align: center;
   justify-content: center;      /* Center text inside buttons */
   border-radius: 5%;
   padding: 1em 2em;
   margin: 10px;
+  width : 5vw;
+  height: 3vh;
   text-decoration: none;
 }
 
 .topButton:hover {
-  background-color: #333;      /* Darker background on hover */
+  background-color: grey;
 }
 
 .topJustify{
@@ -127,8 +199,8 @@ html {
 }
 .topLeftImage{
   border-radius: 10%;
-  width: 4em;
-  height: 4em;
+  width: 50px;
+  height: 30em;
 }
 
 .App-logo {
@@ -150,7 +222,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -193,6 +265,16 @@ html {
   align-items: flex-end;          /* Align buttons to the right */
 }
 
+.welcomeMessage{
+  font-size:12px;
+  border-radius: 2%;
+  padding:1em;
+  text-align: left;
+  justify-content: center;
+  background-color:white  ;
+  width:80vw;
+  height:40vh;
+}
 /* Style for each button link */
 
 
