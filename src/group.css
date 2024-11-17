@@ -1,0 +1,133 @@
+
+.textStyle {
+  width: 100%; /* Occupy the full width of the container */
+  padding: 10px 15px; /* Comfortable padding */
+  font-size: 16px; /* Readable font size */
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 25px; /* Rounded edges */
+  outline: none; /* Remove default focus outline */
+  transition: all 0.3s ease; /* Smooth transition effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background: white;
+  /* background: linear-gradient(145deg, #f0f0f0, #e8e8e8);  */
+}
+
+.groupList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    max-height: 400px; /* Adjust as needed */
+    padding: 8px;
+  }
+
+  .joinClub {
+    width: 25%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    color: white;
+    background-color: rgba(86, 176, 41, 0.759);
+    cursor: pointer;
+  }
+
+  .buttonCon{
+    display: flex;
+    justify-content: right;
+  }
+  .groupUrl{
+    padding: 5px;
+  }
+  .textArea {
+    
+    
+    display: flex;
+    flex-direction: column; /* For better alignment of label and textarea */
+    width: 100%; /* Full-width container */
+    max-width: 600px; /* Optional: Limit the maximum width */
+    margin: 10px 0; /* Remove horizontal centering and add vertical space only */
+    font-family: Arial, sans-serif; /* Set a modern font */
+    align-items: flex-start; /* Align items to the left */
+}
+
+  
+  .textArea textarea {
+    width: 100%; /* Full width of the parent container */
+    min-height: 150px; /* Adjust height as needed */
+    padding: 10px; /* Add space inside the textarea */
+    font-size: 16px; /* Comfortable font size */
+    line-height: 1.5; /* Increase line height for readability */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    resize: vertical; /* Allow resizing vertically only */
+    outline: none; /* Remove default outline on focus */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover/focus effect */
+  }
+  
+  .textArea textarea:focus {
+    border-color: #007BFF; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlighted shadow on focus */
+  }
+  
+  .textArea label {
+    font-weight: bold; /* Bold label text */
+    margin-bottom: 5px; /* Space between label and textarea */
+    display: block; /* Ensure proper spacing */
+    color: #333; /* Neutral text color */
+  }
+  
+  .leaveButton {
+    background-color: rgba(255, 0, 0, 0.634);
+    padding: 10px;
+    width: 20%;
+    color: white;
+    border-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    
+  }
+  .leaveButton:hover {
+    background-color: rgba(180, 5, 5, 0.634);
+  }
+
+  .myGroups{
+    /* list-style: none; */
+    font-size: medium;
+  }
+  
+  .groupCard {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .groupCard img {
+    width: 20%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  
+  .groupContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .groupContent h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .groupContent p {
+    margin: 8px 0 0;
+    text-align: left;
+  }
+  

@@ -9,49 +9,62 @@
 
 /* Title */
 .title {
-  font-size: 2.5rem;
-  color: #2a3d66; /* Darker blue for the title */
-  margin-bottom: 20px;
+  font-size: 3rem; /* Increased font size for more impact */
+  background: linear-gradient(45deg,#f44949, rgb(251, 255, 44) ); /* Gradient from light cyan to dark purple */
+  -webkit-background-clip: text; /* Apply gradient to text */
+  color: transparent; /* Make the text color transparent so the gradient is visible */
+  margin-bottom: 30px;
+  font-weight: bold; /* Make the title bold */
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Add depth with a soft shadow */
+  letter-spacing: 2px; /* Add spacing between letters for a more dynamic look */
+  animation: glowing 1.5s ease-in-out infinite alternate; /* Add glowing animation */
 }
+
+/* Glowing effect */
+@keyframes glowing {
+  0% {
+    text-shadow: 0 0 10px rgba(30, 202, 151, 0.8), 0 0 20px rgba(30, 202, 151, 0.6), 0 0 30px rgba(30, 202, 151, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(30, 202, 151, 0.8), 0 0 30px rgba(30, 202, 151, 0.6), 0 0 40px rgba(30, 202, 151, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(30, 202, 151, 0.8), 0 0 20px rgba(30, 202, 151, 0.6), 0 0 30px rgba(30, 202, 151, 0.4);
+  }
+}
+
 
 /* Description */
 .description {
   font-size: 1.1rem;
-  color: #5a6d86; /* Slightly grayish blue */
+  color: #4a5568; /* Darker blue-gray for better contrast on a light blue background */
   margin-bottom: 30px;
   line-height: 1.6;
+  font-weight: 400; /* Regular weight for readability */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow for better visibility */
 }
 
 /* Call-to-action text */
+/* Call-to-action text */
 .cta-text {
-  font-size: 1rem;
-  color: #777;
+  font-size: 1.1rem;
+  color: #ffffff; /* Keep the white color for visibility */
   margin-bottom: 20px;
+  font-weight: 600; /* Slightly bolder for emphasis without being too loud */
+  letter-spacing: 0.5px; /* Slight letter spacing for a cleaner look */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Softer shadow for better readability */
+  text-transform: none; /* Remove uppercase for a more natural feel */
 }
 
-/* Link styling */
-.App-link {
-  display: inline-block;
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+
+
+
+input[type="text"].no-style {
+  /* Your custom styles */
+  width: auto; /* Example: no special styling applied */
 }
 
-.App-link:hover {
-  background-color: #45a049;
-  transform: translateY(-2px); /* Hover effect */
-}
 
-.App-link:active {
-  background-color: #388e3c;
-  transform: translateY(1px); /* Press effect */
-}
 
 /* For responsive design */
 @media (max-width: 600px) {
@@ -128,6 +141,11 @@
   cursor: pointer;
 
 }
+.joinButton:hover {
+  background-color: rgb(35, 83, 86);
+}
+
+
 
 .group h1{
   text-align: center;
@@ -140,7 +158,7 @@
   display: flex;
   justify-content: flex-start;
   text-align: left;
-  width:fill;
+  width: stretch;
   height:5vh;
 }
 .error-text {
@@ -212,7 +230,11 @@ html {
     rgb(30, 202, 151),
     rgb(46, 104, 192)
   );
-  height: 100%;
+  background-size: cover; /* Ensures the background image covers the entire page */
+  background-attachment: fixed; /* Keeps the background fixed as you scroll */
+  min-height: 100%; /* Ensures the background covers at least the full viewport height */
+  height: 100%; /* Required to ensure proper scaling */
+  margin: 0; /* Removes default margin */
 }
 
 .submitButton{
@@ -221,6 +243,7 @@ html {
   padding: 1em 2em;
   margin: 5px;
   border-radius: 5%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   background-color: rgba(61, 106, 255, 0.5); /* 0.5 is 50% transparency */
   border: None;
   cursor: pointer;
@@ -242,16 +265,21 @@ html {
   border: 2px;
   cursor: pointer;
 }
-
-.signout{
-  border:none;
-  background-color: rgb(122, 122, 122);
-  /* border-radius: 10%; */
-  width : 10vw;
-  height: 5vh;
+.navbar-left {
+  margin: 0;
+  display: flex;
+  flex-direction: column;       /* Stack the logo and buttons vertically */
+  align-items: center;          /* Center-align the items horizontally */
 }
-.signout:hover {
-  background-color: red;
+/* Styling for the navigation links container */
+.navbar-right {
+  display: flex;
+  flex-direction: row; /* Stack the buttons horizontally */
+  align-items: center; /* Center-align buttons vertically within navbar */
+  justify-content: flex-end; /* Align buttons to the right */
+  
+  
+  padding-right: 10px; /* Add a little right padding to ensure space */
 }
 .topButton {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -260,11 +288,27 @@ html {
   text-align: center;
   justify-content: center;      /* Center text inside buttons */
   border-radius: 5%;
-  padding: 1em 2em;
+  padding: 5% 7%;
   margin: 10px;
   width : 5vw;
   height: 3vh;
   text-decoration: none;
+}
+@media screen and (max-width: 600px) {
+  .navbar {
+    justify-content: flex-start;/* Stack logo and buttons vertically on smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+   
+  }
+  .navbar-right {
+    min-width: 70%; /* Adjust padding for smaller screens */
+    flex:content; /* Allow buttons to take up full width */
+  }
+
+  .topButton {
+    min-width: 12%;
+  }
+  
 }
 
 .topButton:hover {
@@ -314,6 +358,31 @@ html {
   color: #61dafb;
 }
 
+
+/* Link styling */
+.App-link {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.App-link:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Hover effect */
+}
+
+.App-link:active {
+  background-color: #388e3c;
+  transform: translateY(1px); /* Press effect */
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -325,13 +394,7 @@ html {
 
 /* Navbar container styling */
 
-/* Styling for the left part of the navbar (image) */
-.navbar-left {
-  margin: 0;
-  display: flex;
-  flex-direction: column;       /* Stack the logo and buttons vertically */
-  align-items: center;          /* Center-align the items horizontally */
-}
+
 
 /* Styling for the image */
 .topLeftImage {
@@ -340,13 +403,8 @@ html {
   height: 4em;
   margin-bottom: 1px;           /* Space between the image and the buttons */
 }
+/* Styling for the left part of the navbar (image) */
 
-/* Styling for the navigation links container */
-.navbar-right {
-  display: flex;
-  flex-direction: row;         /* Stack the buttons vertically */
-  align-items: flex-end;          /* Align buttons to the right */
-}
 
 .welcomeMessage{
   font-size:12px;
@@ -356,7 +414,17 @@ html {
   justify-content: center;
   background-color:white  ;
   width:80vw;
-  height:40vh;
+  height: auto; 
+}
+.welcomeMessage ul {
+  padding-left: 1.5em; /* Add some space on the left for bullet points */
+  margin: 0; /* Remove default margin */
+  list-style-position: outside; /* Ensure bullets are outside the list */
+}
+
+/* Style each list item */
+.welcomeMessage li {
+  margin-bottom: 0.5em; /* Add space between items */
 }
 /* Style for each button link */
 

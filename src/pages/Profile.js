@@ -7,7 +7,6 @@ axios.defaults.withCredentials = true;
 
 const Profile = () => {
   const [groups, setGroups] = useState([]);
-  const [allGroups, setAllGroups] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true); // Default to false
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -104,12 +103,12 @@ const Profile = () => {
           <div className="profile">
             <div className="welcomeMessage">
               <h2>You are currently signed in as {userDisplayName}, click below to sign out.</h2>
-              <input className="signout" type="button" value="Sign Out" onClick={handleLogout} />
-              <h3>You are a memeber of the following groups</h3>
+              <input className="leaveButton" type="button" value="Sign Out" onClick={handleLogout} />
+              
+              <h3>You are a member of the following groups:</h3>
               <ul>
-          <h1 className="arialstyle">My Groups</h1>
           {groups.map(group => (
-            <li className="myGroups"  key={group._id}>{group.name}</li>
+            <li className="myGroups" key={group._id}>{group.name}</li>
           ))}
         </ul>
             </div>
@@ -124,20 +123,19 @@ const Profile = () => {
                   <h2>Register</h2>
                   <hr />
                   <input
+                    className="textStyle"
                     type="text"
                     name="displayName"
                     placeholder="Display Name"
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                   />
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="Username (used for login)"
+                  <input id="no-style" type="text" name="username"  placeholder="Username (used for login)" className="textStyle"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
                   <input
+                    className="textStyle"
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -145,6 +143,7 @@ const Profile = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <input
+                    className="textStyle"
                     type="password"
                     name="repeatPassword"
                     placeholder="Confirm Password"
@@ -168,10 +167,7 @@ const Profile = () => {
               <>
                 <h2>Login</h2>
                 <hr />
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
+                <input type="text" name="username" placeholder="Username" className = "textStyle"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -179,6 +175,7 @@ const Profile = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  className="textStyle"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />

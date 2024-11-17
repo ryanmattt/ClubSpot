@@ -1,5 +1,4 @@
 require("dotenv").config();
-const { faker } = require('@faker-js/faker');
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -69,7 +68,8 @@ const postSchema = new mongoose.Schema({
   date: { type: Date, required: false },
   location: { type: String, required: false },
   photoUrl: { type: String, required: false }, // 'photo-url' field
-    username: { type: String, required: true },
+  username: { type: String, required: true },
+  creationDate: { type: Date, default: Date.now },
 });
 
 const Post = mongoose.model("Post", postSchema);
@@ -93,6 +93,75 @@ const authenticate = (req, res, next) => {
     res.status(401).send({ message: "Invalid token." });
   }
 };
+
+// Assuming you have User model with 'board_groups' field
+app.get("/api/user", authenticate, async (req, res) => {
+  console.log("User data route hit");
+  try {
+    const userId = req.user.id;  // from the decoded token
+    const user = await User.findById(userId).populate('board_groups').populate('groups'); // Populating board_groups
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+    res.status(200).send({
+      board_groups: user.board_groups,
+      groups: user.groups,
+    });
+  } catch (err) {
+    res.status(500).send({ message: "Error fetching user data." });
+  }
+});
+
+// Post creation endpoint
+app.post("/api/posts", authenticate, async (req, res) => {
+  try {
+    const { group, postName, description, isEvent, date, location, photoUrl } = req.body;
+
+    // Step 1: Validate incoming data
+    if (!group || !postName || (isEvent && (!date || !location))) {
+      return res.status(400).send({ message: "Required fields are missing." });
+    }
+
+    // Step 2: Check if the group exists
+    const selectedGroup = await Group.findById(group);
+    if (!selectedGroup) {
+      return res.status(404).send({ message: "Group not found." });
+    }
+
+    // Step 3: Check if the user is an admin of the group
+    const userId = req.user.id;  // The user ID from the decoded token
+    const isAdmin = selectedGroup.admins.includes(userId); // Check if user is in admins array
+
+    if (!isAdmin) {
+      return res.status(403).send({ message: "You must be an admin to post in this group." });
+    }
+
+    // Step 4: Create the post
+    const newPost = new Post({
+      name: postName,
+      description,
+      group,
+      isEvent,
+      date,
+      location,
+      photoUrl,
+      username: req.user.username,  // Assuming you store the username in the decoded JWT
+    });
+
+    await newPost.save();
+
+    // Add the new post to the group's posts array
+    selectedGroup.posts.push(newPost._id);
+    await selectedGroup.save();
+
+    res.status(201).send({ message: "Post created successfully.", post: newPost });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Error creating post." });
+  }
+});
+
 
 // Register a new user
 app.post("/api/auth/register", async (req, res) => {
@@ -154,7 +223,6 @@ app.post("/api/auth/login", async (req, res) => {
 app.post("/api/auth/verify", (req, res) => {
   const token = req.cookies.authToken; // Extract the token from the cookie
 
-  console.log("Token from cookie:", token);
 
   if (!token) {
     return res.status(401).send({ message: "Unauthorized: No token provided." });
@@ -213,29 +281,44 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
-// Create a group
-app.post("/api/groups", async (req, res) => {
-  const { name, description, photoUrl, members, admins } = req.body;
 
-  if (!name || !description) {
-    return res.status(400).send({ message: "Name and description are required." });
+// Leave a group
+app.post("/api/groups/leave", authenticate, async (req, res) => {
+  const { groupId } = req.body;
+
+  if (!groupId) {
+    return res.status(400).send({ message: "Group ID is required." });
   }
 
   try {
-    const newGroup = new Group({
-      name,
-      description,
-      photoUrl,
-      members,  // Array of User IDs
-      admins,   // Array of User IDs
-    });
+    const userId = req.user.id; // Get the user ID from the token
 
-    await newGroup.save();
-    res.status(201).send({ message: "Group created successfully.", group: newGroup });
+    const group = await Group.findById(groupId);
+    if (!group) {
+      return res.status(404).send({ message: "Group not found." });
+    }
+
+    // Check if the user is a member of the group
+    if (!group.members.includes(userId)) {
+      return res.status(400).send({ message: "User is not a member of this group." });
+    }
+
+    // Remove the user from the group's members array
+    group.members = group.members.filter((memberId) => memberId.toString() !== userId);
+    await group.save();
+
+    // Remove the group from the user's groups array
+    const user = await User.findById(userId);
+    user.groups = user.groups.filter((gId) => gId.toString() !== groupId);
+    await user.save();
+
+    res.status(200).send({ message: "User left the group successfully." });
   } catch (err) {
-    res.status(500).send({ message: "Error creating group." });
+    console.error(err);
+    res.status(500).send({ message: "Error leaving group." });
   }
 });
+
 
 // Get the list of groups a user is in
 app.get("/api/groups/user", authenticate, async (req, res) => {
@@ -300,6 +383,7 @@ app.post("/api/groups/create", authenticate, async (req, res) => {
   try {
     const userId = req.user.id; // Get user ID from token
 
+
     const newGroup = new Group({
       name,
       description,
@@ -313,6 +397,7 @@ app.post("/api/groups/create", authenticate, async (req, res) => {
     // Add the newly created group to the user's groups
     const user = await User.findById(userId);
     user.groups.push(newGroup._id);
+    user.board_groups.push(newGroup._id); // Add the group to the user's board groups
     await user.save();
 
     res.status(201).send({ message: "Group created successfully.", group: newGroup });
@@ -338,3 +423,27 @@ app.get("/profile", (req, res) => {
   res.send("Profile page");
 });
 
+// Get posts from the groups the user is a member of
+app.get("/api/posts/user", authenticate, async (req, res) => {
+  try {
+
+
+    const userId = req.user.id; // Get the user ID from the token
+    const user = await User.findById(userId).populate('groups'); // Populate to get group details
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    // Fetch posts for each group the user is part of
+    const groups = user.groups;
+    const posts = await Post.find({ group: { $in: groups } })
+      .sort({ date: -1 }) // Sort by date in descending order (newest first)
+      .populate('group', ['name','photoUrl']) // Populate group name for display
+      .populate('username', 'username');
+
+    res.status(200).send({ posts });
+  } catch (err) {
+    res.status(500).send({ message: "Error fetching posts." });
+  }
+});
