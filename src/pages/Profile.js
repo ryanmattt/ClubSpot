@@ -56,6 +56,7 @@ const Profile = () => {
       })
       .then((res) => {
         Cookies.set("authToken", res.data.token, { expires: 1 }); // Save token in a cookie for 1 day
+        console.log(res.data.displayName);
         setUserDisplayName(res.data.displayName); // Set display name from the response
         fetchGroups();
         setLoggedIn(true);

@@ -212,7 +212,7 @@ app.post("/api/auth/login", async (req, res) => {
     const token = jwt.sign({ id: user._id, username: user.username, displayName: user.displayName }, JWT_SECRET, { expiresIn: "1d" });
     // Set the token as a secure, HTTP-only cookie
     res.cookie("authToken", token, { httpOnly: true, secure: process.env.NODE_ENV === "production", maxAge: 86400000 }); // expires in 1 day
-    res.status(200).send({ message: "Login successful." });
+    res.status(200).send({ message: "Login successful.", displayName: user.displayName });
   } catch (err) {
     res.status(500).send({ message: "Error logging in." });
   }
