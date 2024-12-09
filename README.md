@@ -18,30 +18,3 @@ Simplified Discovery: Users can explore clubs and their activities without being
 **Database:** MongoDB to manage clubs, users, and posts efficiently.
 **Authentication:** MongoDB, jsonwebtokens, bcrypt for pwd hashing to provide secure login and access control for club and user roles.
 **Hosting and Deployment:** Hosted on Ubuntu 22.04 with an Nginx Reverse Proxy and Cloudflare acting as another proxy.
-## Challenges we ran into
-N/A
-
-## Elvator pitch
-Tired of doom scrolling on Instagram? 
-
-Imagine this, blah blah balh it offers this this this and this, it offers community, are you ready to see how it works?
-
-how to market diffentiate
-
-- Scaleablity, easily able to go from one univesrity to another.
-- Personal-ness, curated for each student
-
-[Opening Hook – 15 seconds]
-
-make a connection to studnets
-hook is social media
-
-20 sec
-- Have you ever lost 10 minutes trying to find one event, or give up on looking for something on CCC because there are too many tabs? 
-- Instagram and other social medias have too much noises and CCC has too much options.
-- Now Enter our product: Clubspot. Clubspot is game changing for both clubs and members.
-- For clubs: you don't need 15 clicks to send out emails to students anymore: you can post immediately as if it is an instagram post. 
-- For students, you have a feed where all activites are listed out right at your fingter tips, less than 20 seconds and 5 taps when using the apps.
-- We change the game with a simple and straight-forward experience, where there is no algorithim to hook you in - you can instead focus on genuine, meaningful connections.
-- Ready for a platform that respects your time and fosters your relationship.
-
